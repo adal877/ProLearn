@@ -17,7 +17,7 @@ app.set("views", path.join(__dirname, 'views'));
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());  // Adicione esta linha para aceitar JSON
+app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
 
