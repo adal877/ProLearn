@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= curso.curso %></title>
+</head>
+<body>
+  <h1><%= curso.curso %></h1>
+  <p><strong>Código:</strong> <%= curso.codigo %></p>
+  <p><strong>Ementa:</strong> <%= curso.ementa %></p>
+  <a href="/cursos/<%= curso._id %>/edit">Editar</a>
+  <a href="/cursos">Voltar</a>
+</body>
+</html>

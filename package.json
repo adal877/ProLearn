@@ -1,0 +1,37 @@
+{
+  "name": "aula0205",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "@coreui/coreui": "^5.0.1",
+    "@popperjs/core": "^2.11.8",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "~1.4.4",
+    "coreui": "^0.4.2-alpha2",
+    "debug": "~2.6.9",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "method-override": "^3.0.0",
+    "mongodb": "^6.6.1",
+    "mongoose": "^8.4.0",
+    "morgan": "~1.9.1",
+    "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "css-loader": "^7.1.2",
+    "postcss-loader": "^8.1.1",
+    "sass": "^1.77.2",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}

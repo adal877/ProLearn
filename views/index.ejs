@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cursos</title>
+</head>
+<body>
+  <h1>Cursos</h1>
+  <a href="/cursos/new">Adicionar Novo Curso</a>
+  <ul>
+    <% cursos.forEach(curso => { %>
+      <li>
+        <a href="/cursos/<%= curso._id %>"><%= curso.curso %></a>
+        <form action="/cursos/<%= curso._id %>?_method=DELETE" method="POST" style="display:inline;">
+          <button type="submit">Excluir</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
+

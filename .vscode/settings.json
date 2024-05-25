@@ -1,0 +1,5 @@
+{
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.foldingImportsByDefault": true,
+    "editor.foldingStrategy": "indentation"
+}
