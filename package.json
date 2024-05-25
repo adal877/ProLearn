@@ -6,7 +6,6 @@
     "start": "nodemon index.js"
   },
   "dependencies": {
-    "@coreui/coreui": "^5.0.1",
     "@popperjs/core": "^2.11.8",
     "body-parser": "^1.20.2",
     "cookie-parser": "~1.4.4",
