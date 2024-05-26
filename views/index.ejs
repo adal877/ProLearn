@@ -2,20 +2,61 @@
 <html>
 <head>
   <title>Cursos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script>
+    function DeletarCurso() {
+      const id = event.target.value;
+      const url = `api/v1/curso/${id}`;
+      fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: id })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.status);
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+
+  </script>
 </head>
 <body>
-  <h1>Cursos</h1>
-  <a href="/cursos/new">Adicionar Novo Curso</a>
-  <ul>
-    <% cursos.forEach(curso => { %>
-      <li>
-        <a href="/cursos/<%= curso._id %>"><%= curso.curso %></a>
-        <form action="/cursos/<%= curso._id %>?_method=DELETE" method="POST" style="display:inline;">
-          <button type="submit">Excluir</button>
-        </form>
-      </li>
-    <% }) %>
-  </ul>
+  <div class="container mt-5">
+    <h1 class="text-center ">Seja Bem Vindo ao ProLearn</h1>
+    <div class="text-center mb-3">
+      <a href="/cursos/new" class="btn btn-primary">Adicionar Novo Curso</a>
+    </div>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Curso</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+        <% cursos.forEach(curso => { %>
+            <tbody>
+              <tr>
+                <td><a href="/cursos/<%= curso._id %>"><%= curso.curso %></a></td>
+                <td>
+                  <form style="display:inline;">
+                    <button value="<%= curso._id %>" type="submit" onclick="DeletarCurso()" class="btn btn-danger">Excluir</button>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+
+        <% }) %>
+      </table>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
-

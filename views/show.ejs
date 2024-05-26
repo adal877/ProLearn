@@ -2,12 +2,19 @@
 <html>
 <head>
   <title><%= curso.curso %></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <h1><%= curso.curso %></h1>
-  <p><strong>Código:</strong> <%= curso.codigo %></p>
-  <p><strong>Ementa:</strong> <%= curso.ementa %></p>
-  <a href="/cursos/<%= curso._id %>/edit">Editar</a>
-  <a href="/cursos">Voltar</a>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4"><%= curso.curso %></h1>
+    <hr>
+    <p><strong>Detalhes do Curso</strong></p>
+    <p><strong>Código:</strong> <%= curso.codigo %></p>
+    <p><strong>Ementa:</strong> <%= curso.ementa %></p>
+    <div class="mt-3">
+      <a href="/cursos/<%= curso._id %>/edit" class="btn btn-primary">Editar</a>
+      <a href="/cursos" class="btn btn-secondary ml-2">Voltar</a>
+    </div>
+  </div>
 </body>
 </html>
