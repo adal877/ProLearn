@@ -2,21 +2,52 @@
 <html>
 <head>
   <title>Adicionar Novo Curso</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script>
+    function adicionarCurso() {
+      const url = '/api/v1/curso';
+      const data = {
+        codigo: document.querySelector('#codigo').value,
+        curso: document.querySelector('#curso').value,
+        ementa: document.querySelector('#ementa').value
+      };
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.status);
+        window.location.href = '/cursos';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
 </head>
 <body>
-  <h1>Adicionar Novo Curso</h1>
-  <form action="/cursos" method="POST">
-    <label for="codigo">Código:</label>
-    <input type="text" name="codigo" id="codigo" required>
-    <br>
-    <label for="curso">Curso:</label>
-    <input type="text" name="curso" id="curso" required>
-    <br>
-    <label for="ementa">Ementa:</label>
-    <textarea name="ementa" id="ementa" required></textarea>
-    <br>
-    <button type="submit">Adicionar Curso</button>
-  </form>
-  <a href="/cursos">Voltar</a>
+  <div class="container mt-5">
+    <h1 class="text-center">Adicionar Novo Curso</h1>
+    <div class="mt-4">
+      <div class="form-group">
+        <label for="codigo">Código:</label>
+        <input type="text" name="codigo" id="codigo" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="curso">Curso:</label>
+        <input type="text" name="curso" id="curso" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="ementa">Ementa:</label>
+        <textarea name="ementa" id="ementa" class="form-control" required></textarea>
+      </div>
+      <button onclick="adicionarCurso()" class="btn btn-primary">Adicionar Curso</button>
+    </div>
+    <a href="/cursos" class="btn btn-secondary mt-3">Voltar</a>
+  </div>
 </body>
 </html>

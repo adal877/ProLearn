@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
+
 const path = require('path');
 require('dotenv').config();
 
@@ -18,19 +18,16 @@ app.set("views", path.join(__dirname, 'views'));
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
-app.use(methodOverride('_method'));
 
 // Rotas - API
 app.use('/api/v1', require('./routes/CursoRoutes/cursoApiRoutes'));
 
-// Rotas - frontend
+// Rotas - Frontend
 app.use('/cursos', require('./routes/CursoRoutes/cursoRoutes'));
 
-// Página inicial
-app.get('/', (req, res) => {
-  res.redirect('/cursos');
-});
+app.use('/' , (req, res) => {
+    res.redirect('/cursos');
+    });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
