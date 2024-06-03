@@ -1,62 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Cursos</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Cursos</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script>
-    function DeletarCurso() {
-      const id = event.target.value;
-      const url = `api/v1/curso/${id}`;
-      fetch(url, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ id: id })
-      })
-      .then(response => response.json())
-      .then(data => {
-        alert(data.status);
-        window.location.reload();
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+  <style>
+    body {
+      background-color: #f8f9fa;
     }
-
-  </script>
+    .container {
+      margin-top: 50px;
+      max-width: 800px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .btn-secondary {
+      background-color: #3b3e41;
+      border-color: #3b3e41;
+    }
+    .btn-secondary:hover {
+      background-color: #3b3e41;
+      border-color: #3b3e41;
+    }
+    .btn-danger {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+    .btn-danger:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    /* Alinhar verticalmente o texto e o botão */
+    .align-middle {
+      vertical-align: middle !important;
+    }
+  </style>
 </head>
 <body>
   <div class="container mt-5">
-    <h1 class="text-center ">Seja Bem Vindo ao ProLearn</h1>
-    <div class="text-center mb-3">
-      <a href="/cursos/new" class="btn btn-primary">Adicionar Novo Curso</a>
+    <h1 class="text-center mb-4">Lista de Cursos</h1>
+    <div class="text-right mb-3">
+      <a href="/cursos/new" class="btn btn-success">Adicionar Novo Curso</a>
     </div>
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <table class="table table-striped">
-          <thead>
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-hover">
+          <thead class="thead-light">
             <tr>
-              <th>Curso</th>
-              <th>Ação</th>
+              <th>Nome do Curso</th>
+              <th>Código</th>
+              <th>Ações</th>
             </tr>
           </thead>
-        <% cursos.forEach(curso => { %>
-            <tbody>
+          <tbody>
+            <% cursos.forEach(curso => { %>
               <tr>
-                <td><a href="/cursos/<%= curso._id %>"><%= curso.curso %></a></td>
-                <td>
-                  <form style="display:inline;">
-                    <button value="<%= curso._id %>" type="submit" onclick="DeletarCurso()" class="btn btn-danger">Excluir</button>
+                <td class="align-middle"><a href="/cursos/<%= curso._id %>"><%= curso.curso %></a></td>
+                <td class="align-middle"><%= curso.codigo %></td>
+                <td class="align-middle">
+                  <form id="form-<%= curso._id %>" style="display: inline;" onsubmit="return false;">
+                    <button type="button" onclick="deletarCurso('<%= curso._id %>')" class="btn btn-danger align-middle">Excluir</button>
                   </form>
                 </td>
               </tr>
-            </tbody>
-
-        <% }) %>
-      </table>
+            <% }); %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+
+  <script>
+    function deletarCurso(cursoId) {
+      if (confirm('Tem certeza de que deseja excluir este curso?')) {
+        const url = `api/v1/curso/${cursoId}`;
+        fetch(url, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id: cursoId })
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert(data.status);
+          window.location.reload();
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      }
+    }
+  </script>
 </body>
 </html>
