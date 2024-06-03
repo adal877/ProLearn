@@ -1,8 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Adicionar Novo Curso</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novo Curso</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+      max-width: 800px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+    .btn-secondary:hover {
+      background-color: #5a6268;
+      border-color: #5a6268;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Adicionar Novo Curso</h1>
+    <div class="card">
+      <div class="card-body">
+        <form id="cursoForm" action="/cursos" method="POST">
+          <div class="form-group">
+            <label for="curso">Nome do Curso</label>
+            <input type="text" class="form-control" id="curso" name="curso" required>
+          </div>
+          <div class="form-group">
+            <label for="codigo">Código do Curso</label>
+            <input type="text" class="form-control" id="codigo" name="codigo" required>
+          </div>
+          <div class="form-group">
+            <label for="ementa">Ementa</label>
+            <textarea class="form-control" id="ementa" name="ementa" rows="3" required></textarea>
+          </div>
+          <div class="d-flex justify-content-between">
+            <a href="/cursos" class="btn btn-secondary">Voltar</a>
+            <button type="button" onclick="adicionarCurso()" class="btn btn-primary">Adicionar Curso</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script>
     function adicionarCurso() {
       const url = '/api/v1/curso';
@@ -21,33 +82,12 @@
       .then(response => response.json())
       .then(data => {
         alert(data.status);
-        window.location.href = '/cursos';
+        document.getElementById("cursoForm").reset(); // Limpa o formulário
       })
       .catch(error => {
         console.error('Error:', error);
       });
     }
   </script>
-</head>
-<body>
-  <div class="container mt-5">
-    <h1 class="text-center">Adicionar Novo Curso</h1>
-    <div class="mt-4">
-      <div class="form-group">
-        <label for="codigo">Código:</label>
-        <input type="text" name="codigo" id="codigo" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="curso">Curso:</label>
-        <input type="text" name="curso" id="curso" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="ementa">Ementa:</label>
-        <textarea name="ementa" id="ementa" class="form-control" required></textarea>
-      </div>
-      <button onclick="adicionarCurso()" class="btn btn-primary">Adicionar Curso</button>
-    </div>
-    <a href="/cursos" class="btn btn-secondary mt-3">Voltar</a>
-  </div>
 </body>
 </html>

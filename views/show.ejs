@@ -1,20 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title><%= curso.curso %></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Curso</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+      max-width: 800px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+    .btn-secondary:hover {
+      background-color: #5a6268;
+      border-color: #5a6268;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body>
   <div class="container mt-5">
-    <h1 class="text-center mb-4"><%= curso.curso %></h1>
-    <hr>
-    <p><strong>Detalhes do Curso</strong></p>
-    <p><strong>Código:</strong> <%= curso.codigo %></p>
-    <p><strong>Ementa:</strong> <%= curso.ementa %></p>
-    <div class="mt-3">
-      <a href="/cursos/<%= curso._id %>/edit" class="btn btn-primary">Editar</a>
-      <a href="/cursos" class="btn btn-secondary ml-2">Voltar</a>
+    <h1 class="text-center mb-4">Detalhes do Curso</h1>
+    <div class="card">
+      <div class="card-body">
+        <h3><%= curso.curso %></h3>
+        <p><strong>Código do Curso:</strong> <%= curso.codigo %></p>
+        <p><strong>Ementa:</strong> <%= curso.ementa %></p>
+        <div class="d-flex justify-content-between">
+          <a href="/cursos" class="btn btn-secondary">Voltar</a>
+          <a href="#" class="btn btn-primary" onclick="editarCurso('<%= curso._id %>')">Editar</a>
+        </div>
+      </div>
     </div>
   </div>
+
+  <script>
+    function editarCurso(cursoId) {
+      window.location.href = "/cursos/" + cursoId + "/edit";
+    }
+  </script>
 </body>
 </html>
